@@ -4,11 +4,9 @@ import duckdb
 import pandas as pd
 
 def fetch_and_inspect_2026_data():
-    # 1. Create a local directory to hold the massive dataset
     data_dir = "db_data_2026"
     os.makedirs(data_dir, exist_ok=True)
     
-    # 2. List the available months for this year (Jan through Jul)
     months = ["01", "02", "03", "04", "05", "06", "07"]
     
     print("--- Phase 1a: Downloading 2026 Data ---")
@@ -30,12 +28,10 @@ def fetch_and_inspect_2026_data():
             except Exception as e:
                 print(f" -> Failed to download {filename}. Error: {e}")
 
-    # 3. Use DuckDB to inspect the entire year instantly without crashing RAM
     print("\n--- Phase 1b: DuckDB Full Year Inspection ---")
     print("Connecting DuckDB to all 2026 Parquet files simultaneously...")
     
     try:
-        # We use a wildcard (*.parquet) to query all 7 months as if they were one giant table
         row_count_query = f"SELECT COUNT(*) FROM '{data_dir}/*.parquet'"
         row_count = duckdb.sql(row_count_query).fetchone()[0]
         print(f"\nTotal Rows for 2026: {row_count:,}")

@@ -8,7 +8,6 @@ def run_eda_pipeline():
 
     print("Running EDA GroupBys on 2026 dataset...")
 
-    # 1. Overall Punctuality (The 6-min rule baseline)
     query_overall = f"""
     SELECT 
         COUNT(*) as total_trains,
@@ -18,7 +17,6 @@ def run_eda_pipeline():
     """
     duckdb.sql(query_overall).df().to_parquet(f"{out_dir}/overall.parquet")
 
-    # 2. Delay by Train Type (Filter out noise, keep main types)
     query_type = f"""
     SELECT 
         train_type,
@@ -30,7 +28,6 @@ def run_eda_pipeline():
     """
     duckdb.sql(query_type).df().to_parquet(f"{out_dir}/by_type.parquet")
 
-# 3. Delay by Hour of Day (The Rush Hour Effect)
     query_hour = f"""
     SELECT 
         EXTRACT(hour FROM departure_planned_time) as hour_of_day,
@@ -42,7 +39,6 @@ def run_eda_pipeline():
     """
     duckdb.sql(query_hour).df().to_parquet(f"{out_dir}/by_hour.parquet")
 
-# 4. Worst Stations by Average Delay (Minimum 5000 trains to avoid statistical noise)
     query_station = f"""
     SELECT 
         station_name,

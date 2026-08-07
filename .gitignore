@@ -1,0 +1,9 @@
+# Ignore the Python virtual environment
+venv/
+__pycache__/
+
+# Ignore the massive 4GB raw data folder!
+db_data_2026/
+
+# Ignore Mac system files (if you are on a Mac)
+.DS_Store

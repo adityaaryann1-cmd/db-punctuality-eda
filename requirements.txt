@@ -1,0 +1,6 @@
+pandas
+pyarrow
+fsspec
+duckdb
+streamlit
+plotly

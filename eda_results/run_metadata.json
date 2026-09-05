@@ -1,0 +1,11 @@
+{
+  "total_row_count": 101702091,
+  "operated_trains": 97270559,
+  "cancelled_trains": 4431532,
+  "distinct_stations": 5379,
+  "distinct_train_types": 100,
+  "min_date": "2026-01-01",
+  "max_date": "2026-07-31",
+  "source_file_count": 7,
+  "run_timestamp_utc": "2026-09-05T13:42:35.110068+00:00"
+}
